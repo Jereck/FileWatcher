@@ -17,11 +17,15 @@ WORKDIR /app
 # Copy published app from build stage
 COPY --from=build /app/out ./
 
+# Copy appsettings.json for fallback config
+COPY appsettings.json ./
+
+# Create directories for mounted volumes
+RUN mkdir -p /watched /logs
+
 # Create directories and set environment variables if you want defaults
 ENV WATCH_DIR=/watched
 ENV LOG_FILE=/logs/audit-log.json
-
-RUN mkdir -p /watched /logs
 
 # Run the app, passing in environment variables as arguments if needed
 ENTRYPOINT ["dotnet", "FileIntegrityWatcher.dll"]

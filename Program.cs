@@ -9,6 +9,8 @@ IConfiguration config = builder.Build();
 string watchDir = Environment.GetEnvironmentVariable("WATCH_DIR") ?? config["WatchDirectory"] ?? "./watched";
 string logFile = Environment.GetEnvironmentVariable("LOG_FILE") ?? config["LogFile"] ?? "./logs/audit-log.json";
 
+Console.WriteLine($"Watching directory: {watchDir}");
+
 var watcher = new IntegrityWatcher(watchDir, logFile);
 watcher.Start();
 
