@@ -72,9 +72,9 @@ Try adding, modifying, renaming, or deleting files in the watch directory and se
 ---
 
 ### Next steps
-- [ ] Containerize with Docker for easy deployment
+- [x] Containerize with Docker for easy deployment
 - [ ] Integrate CI/CD pipelines (Github Actions) for automated testing and deployment
-- [ ] Add env var support for 12-factor app compliance [12 Factor](https://12factor.net/)
+- [x] Add env var support for 12-factor app compliance [12 Factor](https://12factor.net/)
 - [ ] Push logs to centralized monitoring tools
 - [ ] Implement alerting on suspicious file changes
 - [ ] Write Unit tests
