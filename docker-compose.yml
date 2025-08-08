@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  file-integrity-watcher:
+    image: file-integrity-watcher:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./watched:/watched   
+      - ./logs:/logs         
+    environment:
+      - WATCH_DIR=/watched
+      - LOG_FILE=/logs/audit-log.json
+    tty: true
+    stdin_open: true

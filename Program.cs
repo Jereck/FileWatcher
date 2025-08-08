@@ -2,10 +2,14 @@
 using FileIntegrityWatcher.Services;
 using Microsoft.Extensions.Configuration;
 
-var config = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false).Build();
+var builder = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: true).AddEnvironmentVariables();
 
-string watchDir = config["WatchDirectory"] ?? "./watched";
-string logFile = config["LogFile"] ?? "./logs/audit-log.json";
+IConfiguration config = builder.Build();
+
+string watchDir = Environment.GetEnvironmentVariable("WATCH_DIR") ?? config["WatchDirectory"] ?? "./watched";
+string logFile = Environment.GetEnvironmentVariable("LOG_FILE") ?? config["LogFile"] ?? "./logs/audit-log.json";
+
+Console.WriteLine($"Watching directory: {watchDir}");
 
 var watcher = new IntegrityWatcher(watchDir, logFile);
 watcher.Start();
